@@ -14,7 +14,6 @@ build/
 
 # Strapi
 .cache/
-.tmp/
 build/
 public/uploads/
 
