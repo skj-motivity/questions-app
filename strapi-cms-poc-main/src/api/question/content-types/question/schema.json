@@ -1,0 +1,36 @@
+{
+  "kind": "collectionType",
+  "collectionName": "questions",
+  "info": {
+    "singularName": "question",
+    "pluralName": "questions",
+    "displayName": "Question"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "question": {
+      "type": "text"
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": [
+        "multi-select",
+        "single-select",
+        "dropdown",
+        "free-text",
+        "multi-with-text"
+      ]
+    },
+    "options": {
+      "type": "component",
+      "component": "questionnaire.option",
+      "repeatable": true
+    },
+    "free_text": {
+      "type": "text"
+    }
+  }
+}

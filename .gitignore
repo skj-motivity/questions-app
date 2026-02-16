@@ -1,0 +1,22 @@
+# Node
+node_modules/
+npm-debug.log
+package-lock.json
+
+# Env files
+.env
+.env.local
+.env.*.local
+
+# Build
+dist/
+build/
+
+# Strapi
+.cache/
+.tmp/
+build/
+public/uploads/
+
+# OS
+.DS_Store
