@@ -1,17 +1,23 @@
 export type Option = {
   id: number;
-  label: string;
-  value: string;
-};
-
-export type QuestionAttributes = {
-  question: string;
-  type: "single-select" | "multi-select";
-  free_text: string | null;
-  options: Option[];
+  option: string;
+  free_text?: string | null;
 };
 
 export type Question = {
   id: number;
-  attributes: QuestionAttributes;
+  documentId?: string;
+  question: string;
+  type?:
+    | "multi-select"
+    | "single-select"
+    | "dropdown"
+    | "free-text"
+    | "multi-with-text"
+    | null;
+  createdAt?: string;
+  updatedAt?: string;
+  publishedAt?: string;
+  free_text?: string | null;
+  options?: Option[];
 };
