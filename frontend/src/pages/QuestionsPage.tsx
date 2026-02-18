@@ -82,6 +82,7 @@ const QuestionsPage = () => {
   const handleLocaleChange = (l: Locale) => {
     setLocale(l);
     setLocaleState(l);
+    setAnswers({});
     // Answers are preserved because we use q_id
   };
 
