@@ -23,3 +23,18 @@ export type Question = {
   free_text?: string | null;
   options?: Option[];
 };
+
+/**
+ * API response shape from Strapi
+ */
+export interface QuestionsApiResponse {
+  data: Question[];
+  meta: {
+    pagination: {
+      page: number;
+      pageSize: number;
+      pageCount: number;
+      total: number;
+    };
+  };
+}

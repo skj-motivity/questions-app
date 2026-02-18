@@ -1,7 +1,7 @@
 import { useEffect, useState, useCallback } from "react";
 import clsx from "clsx";
 import { api } from "../services/api";
-import type { Question } from "../types/question.types";
+import type { Question, QuestionsApiResponse } from "../types/question.types";
 import QuestionCard from "../components/QuestionCard";
 import ProgressBar from "../components/ProgressBar";
 import SubmitButton from "../components/SubmitButton";
@@ -19,25 +19,28 @@ const QuestionsPage = () => {
   const fetchQuestions = useCallback(async (loc: string) => {
     setLoading(true);
     try {
-      const res = await api.get("/questions", { params: { locale: loc } });
-      const raw = res.data?.data ?? res.data ?? [];
-      const items = Array.isArray(raw) ? raw : [];
-
-      const mapped: Question[] = items.map((it: any) => {
-        const source = it.attributes ?? it;
-        return {
-          id: it.id,
-          q_id: source.q_id,
-          question: source.question ?? "",
-          type: source.type ?? null,
-          options: source.options ?? [],
-        };
+      const res = await api.get<QuestionsApiResponse>("/questions", {
+        params: { locale: loc },
       });
+
+      const items = res.data?.data ?? [];
+
+      const mapped: Question[] = items.map((q) => ({
+        id: q.id,
+        q_id: q.q_id,
+        question: q.question ?? "",
+        type: q.type ?? null,
+        options: q.options ?? [],
+        documentId: q.documentId,
+        createdAt: q.createdAt,
+        updatedAt: q.updatedAt,
+        publishedAt: q.publishedAt,
+      }));
 
       mapped.sort((a, b) => Number(a.q_id) - Number(b.q_id));
 
       setQuestions(mapped);
-      setCurrentIndex(0); // reset to first question when refetching
+      setCurrentIndex(0);
     } catch (err) {
       console.error(err);
       setQuestions([]);
@@ -120,7 +123,7 @@ const QuestionsPage = () => {
               selectedAnswer={
                 answers[String(currentQuestion.q_id ?? currentQuestion.id)]
               }
-              onAnswer={(id, value, type) =>
+              onAnswer={(_id, value, type) =>
                 handleAnswer(currentQuestion, value, type)
               }
             />

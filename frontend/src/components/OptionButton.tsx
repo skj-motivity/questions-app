@@ -8,7 +8,7 @@ const OptionButton = ({ label, selected, onClick }: Props) => {
   return (
     <button
       onClick={onClick}
-      className={`w-full text-left px-4 py-2 rounded-lg border transition 
+      className={`cursor-pointer w-full text-left px-4 py-2 rounded-lg border transition 
       ${
         selected
           ? "bg-blue-500 text-white border-blue-500"
