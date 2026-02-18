@@ -10,7 +10,7 @@ const SubmitButton: React.FC<Props> = ({ disabled = false, onClick }) => {
     <button
       onClick={onClick}
       disabled={disabled}
-      className={`w-full py-3 mt-6 rounded-lg text-white font-semibold transition 
+      className={`cursor-pointer px-6 py-2 rounded-md
         ${
           disabled
             ? "bg-gray-400 cursor-not-allowed"

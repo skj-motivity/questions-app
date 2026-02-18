@@ -20,15 +20,14 @@ const QuestionCard = ({ question, selectedAnswer, onAnswer }: Props) => {
     [selectedAnswer],
   );
 
-  // Render a textarea for textual answers
   if (type === "text" || type === "free-text") {
     const value = typeof selectedAnswer === "string" ? selectedAnswer : "";
 
     return (
-      <div className="bg-white shadow-md rounded-xl p-6 space-y-4 border">
+      <div className="bg-white shadow-md rounded-xl p-6 space-y-4 border max-h-95 overflow-y-auto">
         <h2 className="text-lg font-semibold">{questionText}</h2>
         <textarea
-          className="w-full border rounded-md p-3 min-h-30 text-sm"
+          className="w-full border rounded-md p-3 max-h-65 min-h-30 overflow-y-auto text-sm"
           value={value}
           onChange={(e) => onAnswer(id, e.target.value, type ?? null)}
           placeholder="Your answer..."
@@ -38,7 +37,7 @@ const QuestionCard = ({ question, selectedAnswer, onAnswer }: Props) => {
   }
 
   return (
-    <div className="bg-white shadow-md rounded-xl p-6 space-y-4 border">
+    <div className="bg-white shadow-md rounded-md p-6 space-y-4 border max-h-95 overflow-y-auto">
       <h2 className="text-lg font-semibold">{questionText}</h2>
 
       <div className="space-y-2">

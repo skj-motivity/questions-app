@@ -6,6 +6,7 @@ export type Option = {
 
 export type Question = {
   id: number;
+  q_id?: number | string;
   documentId?: string;
   question: string;
   type?:
