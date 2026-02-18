@@ -7,6 +7,7 @@ export interface QuestionnaireOption extends Struct.ComponentSchema {
   };
   attributes: {
     free_text: Schema.Attribute.Text;
+    isSelected: Schema.Attribute.Boolean;
     option: Schema.Attribute.String;
   };
 }

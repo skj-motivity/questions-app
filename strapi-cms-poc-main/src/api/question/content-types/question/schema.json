@@ -20,8 +20,9 @@
         "multi-select",
         "single-select",
         "dropdown",
-        "free-text",
-        "multi-with-text"
+        "text",
+        "multi-with-text",
+        "single-with-text"
       ]
     },
     "options": {
@@ -29,8 +30,11 @@
       "component": "questionnaire.option",
       "repeatable": true
     },
-    "free_text": {
+    "text": {
       "type": "text"
+    },
+    "q_id": {
+      "type": "integer"
     }
   }
 }

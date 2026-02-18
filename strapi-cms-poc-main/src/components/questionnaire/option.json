@@ -10,6 +10,9 @@
     },
     "free_text": {
       "type": "text"
+    },
+    "isSelected": {
+      "type": "boolean"
     }
   },
   "config": {}

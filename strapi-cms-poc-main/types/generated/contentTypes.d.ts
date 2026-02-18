@@ -444,7 +444,6 @@ export interface ApiQuestionQuestion extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
-    free_text: Schema.Attribute.Text;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
@@ -453,14 +452,17 @@ export interface ApiQuestionQuestion extends Struct.CollectionTypeSchema {
       Schema.Attribute.Private;
     options: Schema.Attribute.Component<'questionnaire.option', true>;
     publishedAt: Schema.Attribute.DateTime;
+    q_id: Schema.Attribute.Integer;
     question: Schema.Attribute.Text;
+    text: Schema.Attribute.Text;
     type: Schema.Attribute.Enumeration<
       [
         'multi-select',
         'single-select',
         'dropdown',
-        'free-text',
+        'text',
         'multi-with-text',
+        'single-with-text',
       ]
     >;
     updatedAt: Schema.Attribute.DateTime;

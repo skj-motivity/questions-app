@@ -13,6 +13,7 @@ export type Question = {
     | "single-select"
     | "dropdown"
     | "free-text"
+    | "text"
     | "multi-with-text"
     | null;
   createdAt?: string;
