@@ -1,4 +1,6 @@
 import React from "react";
+import { t } from "../services/translation";
+import { getLocale } from "../services/locale";
 
 type Props = {
   disabled?: boolean;
@@ -6,6 +8,8 @@ type Props = {
 };
 
 const SubmitButton: React.FC<Props> = ({ disabled = false, onClick }) => {
+  const locale = getLocale();
+
   return (
     <button
       onClick={onClick}
@@ -17,7 +21,7 @@ const SubmitButton: React.FC<Props> = ({ disabled = false, onClick }) => {
             : "bg-green-600 hover:bg-green-700"
         }`}
     >
-      Submit
+      {t(locale, "submit")}
     </button>
   );
 };

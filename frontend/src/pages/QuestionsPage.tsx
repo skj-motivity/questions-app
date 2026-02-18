@@ -1,4 +1,5 @@
 import { useEffect, useState, useCallback } from "react";
+import clsx from "clsx";
 import { api } from "../services/api";
 import type { Question } from "../types/question.types";
 import QuestionCard from "../components/QuestionCard";
@@ -6,7 +7,7 @@ import ProgressBar from "../components/ProgressBar";
 import SubmitButton from "../components/SubmitButton";
 import Header from "../components/Header";
 import { getLocale, setLocale, type Locale } from "../services/locale";
-import clsx from "clsx";
+import { t } from "../services/translation";
 
 const QuestionsPage = () => {
   const [questions, setQuestions] = useState<Question[]>([]);
@@ -85,7 +86,7 @@ const QuestionsPage = () => {
   };
 
   if (loading || !currentQuestion) {
-    return <p className="text-center mt-10">Loading...</p>;
+    return <p className="text-center mt-10">{t(locale, "loading")}</p>;
   }
 
   return (
@@ -98,9 +99,9 @@ const QuestionsPage = () => {
           {/* Header Card */}
           <div className="flex justify-between items-center bg-white p-5 rounded-xl shadow-sm border border-gray-200">
             <div>
-              <h1 className="text-2xl font-bold">Health Questionnaire</h1>
+              <h1 className="text-2xl font-bold">{t(locale, "appTitle")}</h1>{" "}
               <p className="text-sm text-gray-500">
-                Question {currentIndex + 1} / {total}
+                {t(locale, "question")} {currentIndex + 1} / {total}
               </p>
             </div>
             <div className="w-1/3">
@@ -132,7 +133,7 @@ const QuestionsPage = () => {
               {percentage}%
             </div>
             <p className="text-sm text-gray-500">
-              You answered {answeredCount} / {total}
+              {t(locale, "answered")} {answeredCount} / {total}
             </p>
           </div>
 
@@ -180,7 +181,7 @@ const QuestionsPage = () => {
                        disabled:opacity-40 disabled:cursor-not-allowed
                        hover:bg-blue-50 transition"
           >
-            Previous
+            {t(locale, "previous")}
           </button>
 
           {currentIndex === total - 1 ? (
@@ -194,7 +195,7 @@ const QuestionsPage = () => {
               className="cursor-pointer px-6 py-2 rounded-md bg-blue-600 text-white 
                          hover:bg-blue-700 transition shadow-sm"
             >
-              Next
+              {t(locale, "next")}
             </button>
           )}
         </div>

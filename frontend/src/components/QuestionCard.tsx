@@ -1,6 +1,8 @@
 import { useCallback } from "react";
 import type { Question, Option } from "../types/question.types";
 import OptionButton from "./OptionButton";
+import { t } from "../services/translation";
+import { getLocale } from "../services/locale";
 
 type Props = {
   question: Question;
@@ -9,6 +11,8 @@ type Props = {
 };
 
 const QuestionCard = ({ question, selectedAnswer, onAnswer }: Props) => {
+  const locale = getLocale();
+
   const { id, question: questionText, type, options } = question;
 
   const isSelected = useCallback(
@@ -30,7 +34,7 @@ const QuestionCard = ({ question, selectedAnswer, onAnswer }: Props) => {
           className="w-full border rounded-md p-3 max-h-65 min-h-30 overflow-y-auto text-sm"
           value={value}
           onChange={(e) => onAnswer(id, e.target.value, type ?? null)}
-          placeholder="Your answer..."
+          placeholder={t(locale, "yourAnswer")}
         />
       </div>
     );
@@ -51,7 +55,7 @@ const QuestionCard = ({ question, selectedAnswer, onAnswer }: Props) => {
             />
           ))
         ) : (
-          <p className="text-sm text-gray-500">No options</p>
+          <p className="text-sm text-gray-500">{t(locale, "noOptions")}</p>
         )}
       </div>
     </div>
